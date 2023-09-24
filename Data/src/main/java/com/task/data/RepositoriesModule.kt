@@ -19,12 +19,10 @@ class RepositoriesModule {
 
     @Provides
     @Singleton
-    fun providesSortedGitReposRepository(
+    fun providesPostsRepository(
         postsService: PostsService,
-        usersService: UsersService
     ): PostsRepository =
         PostsDatasource(
-            postsService,
-            usersService
+            postsService
         )
 }

@@ -1,6 +1,6 @@
 package com.task.task.presentation_module
 
-import com.task.task.presentation_module.sortedGithubRepositories.mappers.GithubRepositoriesUiMapper
+import com.task.task.presentation_module.posts.mappers.PostsUiMapper
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -15,6 +15,6 @@ class MappersModule{
 
     @Provides
     @Singleton
-    fun providesGithubRepositoriesMapper(): GithubRepositoriesUiMapper =
-        GithubRepositoriesUiMapper
+    fun providePostsMapper(): PostsUiMapper =
+        PostsUiMapper
 }

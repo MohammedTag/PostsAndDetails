@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_content_nav_graph"
+    app:startDestination="@id/localeSimsListingFragment">
+    <fragment
+        android:id="@+id/localeSimsListingFragment"
+        android:name="com.task.task.ui_module.posts.PostsListingFragment"
+        android:label="fragment_posts_listing"
+        tools:layout="@layout/fragment_posts_listing" >
+    </fragment>
+
+</navigation>
