@@ -1,4 +1,4 @@
-package com.task.domain.domain_module.posts.useCase
+package com.task.domain.domain_module.posts.useCases
 
 import com.task.domain.domain_module.abstract_usecases.SingleUseCase
 import com.task.domain.domain_module.posts.models.PostsDomain
