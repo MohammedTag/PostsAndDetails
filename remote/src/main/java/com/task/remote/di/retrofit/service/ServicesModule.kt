@@ -1,7 +1,8 @@
 package com.task.remote.di.retrofit.service
 
 import com.task.remote.di.retrofit.RetrofitModule
-import com.task.remote.di.services.sortedGitRepositories.GithubReposService
+import com.task.remote.di.services.posts.PostsService
+import com.task.remote.di.services.user.UsersService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -14,9 +15,16 @@ class ServicesModule {
 
     @Provides
     @Singleton
-    fun provideCallReasonsService(
+    fun providePostsService(
         retrofit: Retrofit
-    ): GithubReposService {
-        return retrofit.create(GithubReposService::class.java)
+    ): PostsService {
+        return retrofit.create(PostsService::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideUserDetailsService(
+        retrofit: Retrofit
+    ): UsersService {
+        return retrofit.create(UsersService::class.java)
     }
 }
