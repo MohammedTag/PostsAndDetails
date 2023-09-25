@@ -111,7 +111,7 @@ class PostDetailsFragment : DaggerFragment() {
     private fun handleCommentsBinding(list: List<CommentsUi>) {
         with(list) {
             if (isEmpty()) {
-                // FIXME:  should add empty view (probably not applicable in ourcase , there will always be result)
+                // FIXME:  should add empty view for no comments case
             } else {
                 with(binding) {
                     commentsRv.isVisible = true
@@ -123,6 +123,9 @@ class PostDetailsFragment : DaggerFragment() {
 
     private fun bindViews() {
         with(binding) {
+            retryButton.setOnClickListener {
+                viewModel.getComments(args.post.id)
+            }
             pullToRefreshLayout.setOnRefreshListener {
                 viewModel.getComments(args.post.id)
                 showLoading()
