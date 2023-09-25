@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_content_nav_graph"
-    app:startDestination="@id/localeSimsListingFragment">
+    app:startDestination="@id/postsListingFragment">
     <fragment
-        android:id="@+id/localeSimsListingFragment"
+        android:id="@+id/postsListingFragment"
         android:name="com.task.task.ui_module.posts.PostsListingFragment"
         android:label="fragment_posts_listing"
         tools:layout="@layout/fragment_posts_listing" >
         <action
-            android:id="@+id/action_localeSimsListingFragment_to_postDetailsFragment"
+            android:id="@+id/action_postsListingFragment_to_postDetailsFragment"
             app:destination="@id/postDetailsFragment" />
     </fragment>
     <fragment

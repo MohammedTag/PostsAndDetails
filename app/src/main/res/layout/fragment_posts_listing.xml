@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/headerView">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/reposListingRv"
+            android:id="@+id/postsListingRv"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"

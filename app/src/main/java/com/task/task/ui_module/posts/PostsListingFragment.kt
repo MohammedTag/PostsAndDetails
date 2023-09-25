@@ -47,7 +47,7 @@ class PostsListingFragment :
                 viewModel.getPosts()
                 showLoading()
             }
-            reposListingRv.adapter = adapter
+            postsListingRv.adapter = adapter
             retryButton.setOnClickListener {
                 viewModel.getPosts()
             }
@@ -76,7 +76,7 @@ class PostsListingFragment :
 
             retryButton.isVisible = false
             animationView.isVisible = false
-            reposListingRv.isVisible = false
+            postsListingRv.isVisible = false
         }
     }
 
@@ -109,7 +109,7 @@ class PostsListingFragment :
         with(binding) {
             animationView.isVisible = true
             retryButton.isVisible = true
-            reposListingRv.isVisible = false
+            postsListingRv.isVisible = false
         }
     }
 
@@ -119,7 +119,7 @@ class PostsListingFragment :
                 // FIXME:  should add empty view (probably not applicable in ourcase , there will always be result)
             } else {
                 with(binding) {
-                    reposListingRv.isVisible = true
+                    postsListingRv.isVisible = true
                     adapter.submitList(list)
                 }
             }
@@ -134,7 +134,7 @@ class PostsListingFragment :
 
     override fun onPostClicked(post: PostsUi) {
         findNavController().navigate(
-            PostsListingFragmentDirections.actionLocaleSimsListingFragmentToPostDetailsFragment(
+            PostsListingFragmentDirections.actionPostsListingFragmentToPostDetailsFragment(
                 post
             )
         )
