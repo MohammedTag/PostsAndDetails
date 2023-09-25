@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_content_nav_graph"
-    app:startDestination="@id/postsListingFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/postsListingFragment"
         android:name="com.task.task.ui_module.posts.PostsListingFragment"
@@ -21,6 +21,15 @@
         <argument
             android:name="post"
             app:argType="com.task.task.presentation_module.posts.models.PostsUi" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.task.task.ui_module.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_postsListingFragment"
+            app:destination="@id/postsListingFragment" />
     </fragment>
 
 </navigation>
