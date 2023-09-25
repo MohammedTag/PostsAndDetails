@@ -16,14 +16,14 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 class PostsListingFragment :
-    DaggerFragment(){
+    DaggerFragment(), PostsListingAdapter.Action {
 
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     private val viewModel: PostsViewModel by viewModels { factory }
 
-    private val adapter = PostsListingAdapter()
+    private val adapter = PostsListingAdapter(this)
 
     private var _binding: FragmentPostsListingBinding? = null
     private val binding get() = _binding!!
@@ -128,5 +128,9 @@ class PostsListingFragment :
         super.onViewCreated(view, savedInstanceState)
         bindViews()
         pullData()
+    }
+
+    override fun onPostClicked(post: PostsUi) {
+        // TODO: should pass post to next fragment
     }
 }

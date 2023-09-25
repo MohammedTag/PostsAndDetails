@@ -8,17 +8,17 @@ import com.task.task.databinding.ItemLayoutBinding
 import com.task.task.presentation_module.posts.models.PostsUi
 
 
-class PostsListingAdapter : ListAdapter<PostsUi, RepositoryItemViewHolder>(
+class PostsListingAdapter (val onPostClicked:Action) : ListAdapter<PostsUi, PostItemViewHolder>(
     PostsDiffCallback()
 ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostItemViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return RepositoryItemViewHolder(binding)
+        return PostItemViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: RepositoryItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: PostItemViewHolder, position: Int) {
+        holder.bind(getItem(position),onPostClicked)
     }
     class PostsDiffCallback : DiffUtil.ItemCallback<PostsUi>() {
         override fun areItemsTheSame(oldItem: PostsUi, newItem: PostsUi): Boolean {
@@ -32,6 +32,6 @@ class PostsListingAdapter : ListAdapter<PostsUi, RepositoryItemViewHolder>(
     }
 
     interface Action{
-        fun onItemClicked(id:Int)
+        fun onPostClicked(post:PostsUi)
     }
 }
