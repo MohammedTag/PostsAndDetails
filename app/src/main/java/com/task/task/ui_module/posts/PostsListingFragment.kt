@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.task.task.databinding.FragmentPostsListingBinding
 import com.task.task.presentation_module.posts.PostsViewModel
 import com.task.task.presentation_module.posts.events.PostsListEvents
@@ -28,7 +29,7 @@ class PostsListingFragment :
     private var _binding: FragmentPostsListingBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentPostsListingBinding.inflate(layoutInflater)
@@ -79,18 +80,12 @@ class PostsListingFragment :
         }
     }
 
-    private fun pullData() {
+    private fun initObserver() {
         with(viewModel) {
-            getPosts()
             posts.observe(viewLifecycleOwner) { event ->
                 when (event) {
                     is PostsListEvents.ErrorState -> {
-                        hideLoading()
-                        with(binding) {
-                            animationView.isVisible = true
-                            retryButton.isVisible = true
-                            reposListingRv.isVisible = false
-                        }
+                        showRetryState()
                     }
 
                     is PostsListEvents.LoadingState -> {
@@ -101,13 +96,20 @@ class PostsListingFragment :
                         hideLoading()
                         binding.animationView.isVisible = false
                         binding.retryButton.isVisible = false
-
                         handleListBinding(event.list)
                     }
 
                     else -> {}
                 }
             }
+        }
+    }
+    private fun showRetryState(){
+        hideLoading()
+        with(binding) {
+            animationView.isVisible = true
+            retryButton.isVisible = true
+            reposListingRv.isVisible = false
         }
     }
 
@@ -127,10 +129,14 @@ class PostsListingFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindViews()
-        pullData()
+        initObserver()
     }
 
     override fun onPostClicked(post: PostsUi) {
-        // TODO: should pass post to next fragment
+        findNavController().navigate(
+            PostsListingFragmentDirections.actionLocaleSimsListingFragmentToPostDetailsFragment(
+                post
+            )
+        )
     }
 }

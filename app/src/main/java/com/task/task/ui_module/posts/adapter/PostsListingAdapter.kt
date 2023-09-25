@@ -8,7 +8,7 @@ import com.task.task.databinding.ItemLayoutBinding
 import com.task.task.presentation_module.posts.models.PostsUi
 
 
-class PostsListingAdapter (val onPostClicked:Action) : ListAdapter<PostsUi, PostItemViewHolder>(
+class PostsListingAdapter (private val onPostClicked:Action) : ListAdapter<PostsUi, PostItemViewHolder>(
     PostsDiffCallback()
 ) {
 

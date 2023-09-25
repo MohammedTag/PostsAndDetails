@@ -14,9 +14,6 @@ sealed class PostsListEvents {
 
     class RetrievedPostsListSuccessfully(val list: List<PostsUi>) : PostsListEvents()
 
-    class RetrievedCommentsListSuccessfully(val commentsList: List<CommentsUi>) :
-        PostsListEvents()
-
     companion object {
 
         fun loading(): PostsListEvents = LoadingState
@@ -26,10 +23,6 @@ sealed class PostsListEvents {
 
         fun retrievedPostsListSuccessfully(postsList: List<PostsUi>): PostsListEvents =
             RetrievedPostsListSuccessfully(postsList)
-
-        fun retrievedCommentsListSuccessfully(commentsList: List<CommentsUi>): PostsListEvents =
-            RetrievedCommentsListSuccessfully(commentsList)
-
 
     }
 }

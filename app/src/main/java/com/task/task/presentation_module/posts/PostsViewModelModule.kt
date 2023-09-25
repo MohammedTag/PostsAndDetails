@@ -16,8 +16,6 @@ abstract class PostsViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(PostsViewModel::class)
-    internal abstract fun bindPostsViewModel(localeSimsViewModel: PostsViewModel): ViewModel
+    internal abstract fun bindPostsViewModel(postsViewModel: PostsViewModel): ViewModel
 
-    @Binds
-    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

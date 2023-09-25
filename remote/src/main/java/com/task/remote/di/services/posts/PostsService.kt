@@ -15,5 +15,5 @@ interface PostsService {
     fun getPosts():Single<List<PostsResponse>>
 
     @GET(EndPoints.postDetails)
-    fun getPostDetails(@Path("{postId}") postId:Int):Single<List<CommentResponse>>
+    fun getPostDetails(@Path("postId") postId:Int):Single<List<CommentResponse>>
 }

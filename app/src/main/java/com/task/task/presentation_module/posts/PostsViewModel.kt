@@ -20,6 +20,9 @@ class PostsViewModel @Inject constructor(
     val posts: LiveData<PostsListEvents>
         get() = _posts
 
+    init {
+        getPosts()
+    }
     fun getPosts() {
         executeSingle(useCase = getPostsUseCase.run(null),
             successConsumer = { data ->

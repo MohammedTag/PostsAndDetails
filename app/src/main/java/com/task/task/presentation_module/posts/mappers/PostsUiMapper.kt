@@ -20,11 +20,11 @@ object PostsUiMapper {
     fun fromCommentsDomainToCommentsUiModel(commentsList: List<CommentDomain>): List<CommentsUi> =
         commentsList.map { domainComment ->
             CommentsUi(
-                domainComment.body,
-                domainComment.email,
-                domainComment.id,
-                domainComment.name,
-                domainComment.post_id
+                body = domainComment.body,
+                email = domainComment.email,
+                id = domainComment.id,
+                name = domainComment.name,
+                post_id = domainComment.post_id
             )
         }
 }

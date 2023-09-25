@@ -9,6 +9,18 @@
         android:name="com.task.task.ui_module.posts.PostsListingFragment"
         android:label="fragment_posts_listing"
         tools:layout="@layout/fragment_posts_listing" >
+        <action
+            android:id="@+id/action_localeSimsListingFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.task.task.ui_module.postDetails.PostDetailsFragment"
+        android:label="fragment_post_details"
+        tools:layout="@layout/fragment_post_details" >
+        <argument
+            android:name="post"
+            app:argType="com.task.task.presentation_module.posts.models.PostsUi" />
     </fragment>
 
 </navigation>
