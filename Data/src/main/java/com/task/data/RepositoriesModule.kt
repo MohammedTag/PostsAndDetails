@@ -21,8 +21,10 @@ class RepositoriesModule {
     @Singleton
     fun providesPostsRepository(
         postsService: PostsService,
+        usersService: UsersService
     ): PostsRepository =
         PostsDatasource(
-            postsService
+            postsService,
+            usersService
         )
 }

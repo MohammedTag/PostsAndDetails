@@ -6,5 +6,5 @@ data class PostsUi(
     val body: String,
     val id: Int,
     val title: String,
-    val user: Int
+    val user: UserUi
 ):Serializable
