@@ -9,3 +9,10 @@ fun String.getInitials(): String {
         .mapNotNull { it.firstOrNull()?.toString() }
         .reduce { acc, s -> acc + s }
 }
+
+fun String.isUnknownUser(): Boolean {
+    return this.filter { !it.isWhitespace() }.equals(
+        "unknownUser",
+        true
+    )
+}

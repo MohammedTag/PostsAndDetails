@@ -6,17 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import coil.clear
 import coil.load
 import com.task.task.R
 import com.task.task.databinding.FragmentPostDetailsBinding
 import com.task.task.presentation_module.comments.CommentsViewModel
 import com.task.task.presentation_module.events.CommentsEvents
 import com.task.task.presentation_module.posts.models.CommentsUi
+import com.task.task.presentation_module.posts.models.PostsUi
 import com.task.task.ui_module.postDetails.adapter.CommentsAdapter
+import com.task.task.ui_module.utils.getInitials
+import com.task.task.ui_module.utils.isUnknownUser
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -136,15 +142,62 @@ class PostDetailsFragment : DaggerFragment() {
                     R.drawable.baseline_person_search_24
                 )
             )
-            postDetails.NameTv.apply {
-                setTypeface(null, Typeface.BOLD_ITALIC)
-                isVisible= true
-                text = context.resources.getText(R.string.unknown_user)
-            }
+
             postDetails.titleTv.text = args.post.title
             postDetails.DescTv.text = args.post.body
             commentsRv.adapter = adapter
+            bindUserName(args.post.user.name)
         }
     }
 
+    private fun bindUserName(name: String) {
+
+        binding.apply {
+
+            if (name.isUnknownUser()
+            ) {
+                binding.postDetails.avatarIv.load(
+                    AppCompatResources.getDrawable(
+                        requireContext(),
+                        R.drawable.baseline_person_search_24
+                    )
+                )
+                setUpUserNameTextView(
+                    resources.getText(R.string.unknown_user).toString()
+                )
+            } else {
+                binding.postDetails.avatarIv.clear()
+                setUpUserNameTextView(args.post.user.name)
+                setAvatarBackground(binding)
+            }
+        }
+    }
+
+    private fun setUpUserNameTextView(name: String) {
+        binding.postDetails.NameTv.apply {
+            setTypeface(null, Typeface.BOLD_ITALIC)
+            isVisible = true
+            text = if (name.isUnknownUser()) name else ""
+        }
+        binding.postDetails.OwnerNameTv.text = if (name.isUnknownUser()) "" else name.getInitials()
+    }
+
+    private fun setAvatarBackground(binding: FragmentPostDetailsBinding) {
+        binding.postDetails.avatarIv.background =
+            context?.getDrawable(R.drawable.bg_white_15_round_corners)
+        binding.postDetails.avatarIv.apply {
+            val backgroundDrawable =
+                AppCompatResources.getDrawable(
+                    context,
+                    R.drawable.bg_white_15_round_corners
+                )?.mutate()
+            backgroundDrawable?.let {
+                DrawableCompat.setTint(
+                    it,
+                    ContextCompat.getColor(context, R.color.colorAccent)
+                )
+            }
+            background = backgroundDrawable
+        }
+    }
 }
