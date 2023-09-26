@@ -21,7 +21,6 @@ class PostItemViewHolder(private val binding: ItemLayoutBinding) :
         itemView.apply {
             with(item) {
                 itemView.background = context.getDrawable(R.drawable.bg_white_15_round_corners)
-                bindUserName(item)
                 binding.titleTv.text = title
                 binding.NameTv.apply {
                     setTypeface(null, Typeface.BOLD_ITALIC)
@@ -32,6 +31,23 @@ class PostItemViewHolder(private val binding: ItemLayoutBinding) :
                 setOnClickListener {
                     onClickDelegate.onPostClicked(this)
                 }
+
+                binding.avatarIv.apply {
+                    clear()
+                    val backgroundDrawable =
+                        AppCompatResources.getDrawable(
+                            context,
+                            R.drawable.bg_white_15_round_corners
+                        )?.mutate()
+                    backgroundDrawable?.let {
+                        DrawableCompat.setTint(
+                            it,
+                            ContextCompat.getColor(context, R.color.material_dynamic_neutral80)
+                        )
+                    }
+                    background = backgroundDrawable
+                }
+                bindUserName(item)
             }
         }
     }
